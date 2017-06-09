@@ -5,6 +5,9 @@ import (
 	"math"
 )
 
+// Expands from the middle of a word until it doesn't find any more
+// matching characters. So it doesn't have to go all the way each time
+// like in the brute - force approach.
 func longestPalindrome(s string) string {
 	start := 0
 	end := 0
