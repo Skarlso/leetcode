@@ -26,8 +26,8 @@ func longestPalindrome(s string) string {
 	pal := pals{m: make(map[string]int)}
 	l := len(s)
 	var wg sync.WaitGroup
+	wg.Add(l-1)
 	for i := 0; i < l; i++ {
-		wg.Add(1)
 		go func(c int) {
 			defer wg.Done()
 			for j := c; j < l; j++ {
