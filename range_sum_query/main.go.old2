@@ -1,0 +1,52 @@
+package main
+
+type sumRange struct {
+	left, right int
+}
+
+// I need some kind of cache for all the values?
+type NumArray struct {
+	cache map[sumRange]int
+	nums  []int
+}
+
+func Constructor(nums []int) NumArray {
+	c := make(map[sumRange]int)
+	return NumArray{cache: c, nums: nums}
+}
+
+// Given an integer array nums, handle multiple queries of the following type:
+// Calculate the sum of the elements of nums between indices left and right inclusive where left <= right.
+// Implement the NumArray class:
+//
+//	NumArray(int[] nums) Initializes the object with the integer array nums.
+//	int sumRange(int left, int right) Returns the sum of the elements of nums between indices left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
+//
+// This is the solution, but apparently, it's super slow.
+// When we construct it, try coming up with some kind of caching?
+// 1, 2, 3, 4
+// 1, 3
+// 2, 3, 4 -> 9
+// OH! Dynamic programing. We have to build up the cache as we go.
+// we save those ranges just like I did before when I initialized the cache.
+// then, we access if that range already exists.
+func (this *NumArray) SumRange(left int, right int) int {
+	if v, ok := this.cache[sumRange{left: left, right: right}]; ok {
+		return v
+	}
+	for i := left; i <= right; i++ {
+		var sum int
+		for _, k := range this.nums[i : right+1] {
+			sum += k
+		}
+		this.cache[sumRange{left: i, right: right}] = sum
+	}
+
+	return this.cache[sumRange{left: left, right: right}]
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * obj := Constructor(nums);
+ * param_1 := obj.SumRange(left,right);
+ */
