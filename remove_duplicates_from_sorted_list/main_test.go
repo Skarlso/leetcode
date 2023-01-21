@@ -6,10 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRemoveElements(t *testing.T) {
+func TestLeetCode(t *testing.T) {
 	testCases := []struct {
 		input  func() *ListNode
-		value  int
 		output *ListNode
 	}{
 		{
@@ -17,44 +16,19 @@ func TestRemoveElements(t *testing.T) {
 				start := &ListNode{
 					Val: 1,
 					Next: &ListNode{
-						Val: 2,
+						Val: 3,
 						Next: &ListNode{
 							Val: 3,
-							Next: &ListNode{
-								Val: 4,
-								Next: &ListNode{
-									Val: 5,
-									Next: &ListNode{
-										Val: 6,
-										Next: &ListNode{
-											Val: 7,
-										},
-									},
-								},
-							},
 						},
 					},
 				}
 
 				return start
 			},
-			value: 6,
 			output: &ListNode{
 				Val: 1,
 				Next: &ListNode{
-					Val: 2,
-					Next: &ListNode{
-						Val: 3,
-						Next: &ListNode{
-							Val: 4,
-							Next: &ListNode{
-								Val: 5,
-								Next: &ListNode{
-									Val: 7,
-								},
-							},
-						},
-					},
+					Val: 3,
 				},
 			},
 		},
@@ -75,29 +49,35 @@ func TestRemoveElements(t *testing.T) {
 
 				return start
 			},
-			value:  7,
-			output: nil,
+			output: &ListNode{
+				Val: 7,
+			},
 		},
 		{
 			input: func() *ListNode {
 				start := &ListNode{
-					Val: 1,
+					Val: 0,
 					Next: &ListNode{
-						Val: 2,
+						Val: 0,
+						Next: &ListNode{
+							Val: 0,
+							Next: &ListNode{
+								Val: 0,
+							},
+						},
 					},
 				}
 
 				return start
 			},
-			value: 1,
 			output: &ListNode{
-				Val: 2,
+				Val: 0,
 			},
 		},
 	}
 
 	for _, tt := range testCases {
-		got := removeElements(tt.input(), tt.value)
+		got := deleteDuplicates(tt.input())
 		assert.Equal(t, tt.output, got)
 	}
 }

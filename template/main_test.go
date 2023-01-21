@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestContainsDuplicate(t *testing.T) {
+func TestLeetCode(t *testing.T) {
 	testCases := []struct {
 		input  []int
 		output bool

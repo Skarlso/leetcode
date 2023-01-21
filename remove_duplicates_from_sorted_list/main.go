@@ -6,20 +6,14 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func removeElements(head *ListNode, val int) *ListNode {
-	// deal with deleting every value at the begin of the list
-	// that would start with the value that is to be deleted.
-	// [7, 7, 7, 7]
-	for head != nil && head.Val == val {
-		head = head.Next
-	}
-
-	prev := &ListNode{}
+// The list is guaranteed to be sorted in ascending order.
+// So just skip if the next one is equal to the prev one.
+func deleteDuplicates(head *ListNode) *ListNode {
+	prev := head
 	current := head
 
-	// Normal delete operation after that.
 	for current != nil {
-		if current.Val == val {
+		if current.Val == prev.Val {
 			prev.Next = current.Next
 		} else {
 			prev = current
