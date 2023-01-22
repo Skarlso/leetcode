@@ -9,14 +9,11 @@ type ListNode struct {
 // The list is guaranteed to be sorted in ascending order.
 // So just skip if the next one is equal to the prev one.
 func deleteDuplicates(head *ListNode) *ListNode {
-	prev := head
 	current := head
 
 	for current != nil {
-		if current.Val == prev.Val {
-			prev.Next = current.Next
-		} else {
-			prev = current
+		for current.Next != nil && current.Val == current.Next.Val {
+			current.Next = current.Next.Next
 		}
 		current = current.Next
 	}
