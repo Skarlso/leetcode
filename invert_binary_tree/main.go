@@ -34,15 +34,6 @@ func invertTreeRecursive(root *TreeNode) *TreeNode {
 		return nil
 	}
 
-	root.Left, root.Right = root.Right, root.Left
-
-	if root.Left != nil {
-		root.Left = invertTreeRecursive(root.Left)
-	}
-
-	if root.Right != nil {
-		root.Right = invertTreeRecursive(root.Right)
-	}
-
+	root.Left, root.Right = invertTreeRecursive(root.Right), invertTreeRecursive(root.Left)
 	return root
 }
