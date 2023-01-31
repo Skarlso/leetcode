@@ -47,3 +47,53 @@ func TestLeetCodeV2(t *testing.T) {
 		assert.Equal(t, tt.output, got)
 	}
 }
+
+func TestLeetCodeV3(t *testing.T) {
+	testCases := []struct {
+		input  []int
+		output int
+	}{
+		{
+			input:  []int{1, 3, 4, 2, 2},
+			output: 2,
+		},
+		{
+			input:  []int{1, 3, 2, 4, 2},
+			output: 2,
+		},
+		{
+			input:  []int{3, 2, 1, 5, 3, 4},
+			output: 3,
+		},
+	}
+
+	for _, tt := range testCases {
+		got := findDuplicateV3(tt.input)
+		assert.Equal(t, tt.output, got)
+	}
+}
+
+func TestLeetCodeV4(t *testing.T) {
+	testCases := []struct {
+		input  []int
+		output int
+	}{
+		{
+			input:  []int{1, 3, 4, 2, 2},
+			output: 2,
+		},
+		{
+			input:  []int{1, 3, 2, 4, 2},
+			output: 2,
+		},
+		{
+			input:  []int{3, 2, 1, 5, 3, 4},
+			output: 3,
+		},
+	}
+
+	for _, tt := range testCases {
+		got := findDuplicateV4(tt.input)
+		assert.Equal(t, tt.output, got)
+	}
+}

@@ -56,19 +56,35 @@ func abs(x int) int {
 }
 
 // fast slow pointer...
-public int findDuplicate_fastSlow(int[] nums) {
-	int slow = 0;
-	int fast = 0;
-	do {
-		slow = nums[slow];
-		fast = nums[nums[fast]];
-	} while (slow != fast);
-
-	slow = 0;
-	while (slow != fast) {
-		slow = nums[slow];
-		fast = nums[fast];
+func findDuplicateV3(nums []int) int {
+	slow := 0
+	fast := 0
+	for {
+		slow = nums[slow]
+		fast = nums[nums[fast]]
+		if slow == fast {
+			break
+		}
 	}
 
-	return slow;
+	slow = 0
+	for slow != fast {
+		slow = nums[slow]
+		fast = nums[fast]
+	}
+
+	return slow
+}
+
+// n(n+1))/2
+func findDuplicateV4(nums []int) int {
+	n := len(nums) - 1
+	sum := (n * (n + 1)) / 2
+
+	realSum := 0
+	for _, v := range nums {
+		realSum += v
+	}
+
+	return realSum - sum
 }
