@@ -20,7 +20,7 @@ func backtrack(nums []int, result *[][]int, index int) {
 		// add the current number into the slice
 		nums[index], nums[i] = nums[i], nums[index]
 		// do the whole thing again but start from the next index
-		backtrack(nums, result, i+1)
+		backtrack(nums, result, index+1)
 		// remove what we did and do it again with the next item.
 		nums[i], nums[index] = nums[index], nums[i]
 	}
